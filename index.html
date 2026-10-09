@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Image to Video</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #101020;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 450px;
+  margin: auto;
+  background: #202038;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+h1 {
+  color: #a78bfa;
+}
+
+input, button, textarea {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: #7c3aed;
+  color: white;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+#status {
+  color: #c4b5fd;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>🎬 Image to Video AI</h1>
+  <p>Turn your image into a video</p>
+
+  <input type="file" id="imageInput" accept="image/*">
+
+  <img id="preview" style="display:none;">
+
+  <textarea id="prompt"
+    placeholder="Describe how you want your video to move..."></textarea>
+
+  <button onclick="generateVideo()">Generate Video</button>
+
+  <p id="status">Upload an image to get started.</p>
+</div>
+
+<script>
+const imageInput = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+const statusText = document.getElementById("status");
+
+imageInput.addEventListener("change", function() {
+  const file = this.files[0];
+
+  if (file && file.type.startsWith("image/")) {
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+    statusText.textContent = "Image uploaded successfully!";
+  }
+});
+
+function generateVideo() {
+  if (!imageInput.files.length) {
+    statusText.textContent = "Please upload an image first.";
+    return;
+  }
+
+  statusText.textContent =
+    "Image ready! AI video generation is not connected yet.";
+}
+</script>
+</body>
+</html>
